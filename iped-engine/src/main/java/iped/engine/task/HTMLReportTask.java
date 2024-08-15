@@ -777,7 +777,7 @@ public class HTMLReportTask extends AbstractTask {
         p.append("</tr></table>\n"); //$NON-NLS-1$
 
         replace(sb, "%CATEGORY%", (isLabel ? Messages.getString("HTMLReportTask.Bookmark") //$NON-NLS-1$ //$NON-NLS-2$
-                : Messages.getString("HTMLReportTask.Category")) + ": " + name); //$NON-NLS-1$ //$NON-NLS-2$
+                : "<th>" + Messages.getString("HTMLReportTask.Category")) + "</th><td>" + name + "</td>"); //$NON-NLS-1$ //$NON-NLS-2$
         replace(sb, "%COMMENTS%", getComments(name)); //$NON-NLS-1$
         replace(sb, "%TOTALCOUNT%", String.valueOf(totRegs)); //$NON-NLS-1$
         replace(sb, "%ITEMS%", items.toString()); //$NON-NLS-1$

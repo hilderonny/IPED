@@ -1,44 +1,71 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<link rel="stylesheet" type="text/css" href="res/common.css"/>
-<link rel="stylesheet" type="text/css" href="res/bookmarks.css"/>
-<title>Lesezeichen</title>
-<style>
-.thumb {width:auto; height:auto; max-width:%THUMBSIZE%px; max-height:%THUMBSIZE%px;}
-@media print {
-    .print-one-evidence-per-page .bkmkSeparator { page-break-before: always; }
-    .thumb { max-width:100%; max-height: 100%; page-break-before: avoid; }
-    .print-one-evidence-per-page .thumb { width: 100%; }
-    .hide-on-print { display: none; }
-}
-</style>
-<script>
-    function handlePrint(cls) {
-        document.body.classList.add(cls);
-        window.print();
-        document.body.classList.remove(cls);
-    }
-</script>
-</head><body>
-    <div id="conteudo" align="center">
-        <table class="info">
-            <tr><td valign="top" class="SmallText3" width = "1%"><b>Aktenzeichen</b></td><td align="left" valign="middle" class="MainBodyText"><b>%REPORT%</b></td></tr>
-            <tr><td valign="top" class="SmallText3" width = "1%"><b>Berichtsdatum</b></td><td align="left" valign="middle" class="MainBodyText">%REPORT_DATE%</td></tr>
-            <tr><td valign="top" class="SmallText3" width = "1%"><b>Dezernat</b></td><td align="left" valign="middle" class="MainBodyText">%EXAMINERS%</td></tr>
-            <tr><td valign="top" class="SmallText3" width = "1%"><b>Sachbearbeiter</b></td><td align="left" valign="middle" class="MainBodyText">%INVESTIGATION%</td></tr>
-            <tr><td valign="top" class="SmallText3" width = "1%"><b>Vorgangsnummer</b></td><td align="left" valign="middle" class="MainBodyText">%RECORD%</td></tr>
-        </table>
-    </div>
-    <div class="hide-on-print">
-        Drucken:
-        <button onclick="handlePrint('print-consecutive');">Fortlaufend</button>
-        <button onclick="handlePrint('print-one-evidence-per-page');">Eine Datei je Seite</button>
-    </div>
-<table width="100%">
-    <tr><th class="columnHead" colspan="1" style="font-size:16px">%CATEGORY%</th></tr>
-    <tr><td class="clrBkgrnd"><span style="font-weight:bold">Anzahl Dateien: </span>%TOTALCOUNT%</td></tr>
-</table>
-<div class="bkmkLblFiles hide-on-print" width="100%" border="1">Dateien</div>
-%ITEMS%
-</body></html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-DE">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>%REPORT% %CATEGORY%</title>
+        <style>
+            * { font-family: sans-serif; }
+            .stammdaten { margin: auto }
+            th { text-align: left; }
+            .thumb { width:auto; height:auto; max-width:200px; max-height:200px; }
+            .print-controls { text-align: right; }
+            @media print {
+                .print-one-evidence-per-page .new-item { page-break-before: always; }
+                .thumb { max-width:100%; max-height: 100%; page-break-before: avoid; }
+                .print-one-evidence-per-page .thumb { width: 100%; }
+                .hide-on-print { display: none; }
+            }
+        </style>
+        <script>
+            function handlePrint(cls) {
+                document.body.classList.add(cls);
+                window.print();
+                document.body.classList.remove(cls);
+            }
+        </script>
+    </head>
+    <body>
 
+        <div class="print-controls hide-on-print">
+            Drucken:
+            <button type="button" onclick="handlePrint('print-consecutive');">Fortlaufend</button>
+            <button type="button" onclick="handlePrint('print-one-evidence-per-page');">Eine Datei je Seite</button>
+        </div>
+    
+        <h1>Stammdaten</h1>
+
+        <table class="stammdaten">
+            <tr>
+                <th>Aktenzeichen</th>
+                <th>%REPORT%</th>
+            </tr>
+            <tr>
+                <th>Berichtsdatum</th>
+                <td>%REPORT_DATE%</td>
+            </tr>
+            <tr>
+                <th>Dezernat</th>
+                <td>%EXAMINERS%</td>
+            </tr>
+            <tr>
+                <th>Sachbearbeiter</th>
+                <td>%INVESTIGATION%</td>
+            </tr>
+            <tr>
+                <th>Vorgangsnummer</th>
+                <td>%RECORD%</td>
+            </tr>
+            <tr>
+                %CATEGORY%
+            </tr>
+            <tr>
+                <th>Anzahl Dateien</th>
+                <td>%TOTALCOUNT%</td>
+            </tr>
+        </table>
+
+        %ITEMS%
+
+    </body>
+</html>
