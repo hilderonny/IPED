@@ -9,6 +9,7 @@
     .print-one-evidence-per-page .bkmkSeparator { page-break-before: always; }
     .thumb { max-width:100%; max-height: 100%; page-break-before: avoid; }
     .print-one-evidence-per-page .thumb { width: 100%; }
+    .hide-on-print { display: none; }
 }
 </style>
 <script>
@@ -18,47 +19,26 @@
         document.body.classList.remove(cls);
     }
 </script>
-</head><body><table><tr><td height="20" valign="top"><img border="0" src="res/header.gif"/></td></tr></table>
+</head><body>
     <div id="conteudo" align="center">
         <table class="info">
-            <tr>
-                <td valign="middle" class="SmallText3" align="center" colspan="2"><b>%HEADER%</b><br /></td>
-            </tr>	
-            <tr><td valign="top" class="SmallText3" width = "1%"><b>Bericht</b></td><td align="left" valign="middle" class="MainBodyText"><b>%REPORT%</b></td></tr>
-            <tr><td valign="top" class="SmallText3" width = "1%"><b>Datum</b></td><td align="left" valign="middle" class="MainBodyText">%REPORT_DATE%</td></tr>
-            <tr><td valign="top" class="SmallText3" width = "1%"><b>Titel</b></td><td align="left" valign="middle" class="MainBodyText">%TITLE%</td></tr>
-
-            <tr><td valign="top" class="SmallText3" width = "1%"><b>Ermittler</b></td><td align="left" valign="middle" class="MainBodyText">
-                    %EXAMINERS%
-                </td></tr>
-
-            <tr><td valign="top" class="SmallText3" width = "1%"><b>Vorgangsreferenz</b></td><td align="left" valign="middle" class="MainBodyText">
-                    <b>%INVESTIGATION%</b><br>
-                    %REQUEST_DOC% vom %REQUEST_DATE%<br>
-                    angefordert von %REQUESTER%<br>
-                    Fallnummer des Labors %RECORD% vom %RECORD_DATE%<br>
-                </td></tr>
-
-            <tr>
-                <td valign="top" class="SmallText3" width = "1%"><b>Analysierte Beweise</b></td>
-                <td align="left" valign="middle" class="MainBodyText">
-                    %EVIDENCE%
-                </td>
-            </tr>
-
-            </tr>
-
+            <tr><td valign="top" class="SmallText3" width = "1%"><b>Aktenzeichen</b></td><td align="left" valign="middle" class="MainBodyText"><b>%REPORT%</b></td></tr>
+            <tr><td valign="top" class="SmallText3" width = "1%"><b>Berichtsdatum</b></td><td align="left" valign="middle" class="MainBodyText">%REPORT_DATE%</td></tr>
+            <tr><td valign="top" class="SmallText3" width = "1%"><b>Dezernat</b></td><td align="left" valign="middle" class="MainBodyText">%EXAMINERS%</td></tr>
+            <tr><td valign="top" class="SmallText3" width = "1%"><b>Sachbearbeiter</b></td><td align="left" valign="middle" class="MainBodyText">%INVESTIGATION%</td></tr>
+            <tr><td valign="top" class="SmallText3" width = "1%"><b>Vorgangsnummer</b></td><td align="left" valign="middle" class="MainBodyText">%RECORD%</td></tr>
         </table>
     </div>
-    Drucken:
-    <button onclick="handlePrint('print-consecutive');">Fortlaufend</button>
-    <button onclick="handlePrint('print-one-evidence-per-page');">Eine Datei je Seite</button>
-%PAGS%
-<table width="100%"><tr><th class="columnHead" colspan="1" style="font-size:16px">%CATEGORY%</th></tr>
-<tr><td class="clrBkgrnd"><span style="font-weight:bold">Kommentare: </span>%COMMENTS%</td></tr></table>
-<tr><td class="clrBkgrnd"><span style="font-weight:bold">Anzahl Dateien: </span>%TOTALCOUNT%</td></tr></table>
-<div class="bkmkLblFiles" width="100%" border="1">Dateien</div>
+    <div class="hide-on-print">
+        Drucken:
+        <button onclick="handlePrint('print-consecutive');">Fortlaufend</button>
+        <button onclick="handlePrint('print-one-evidence-per-page');">Eine Datei je Seite</button>
+    </div>
+<table width="100%">
+    <tr><th class="columnHead" colspan="1" style="font-size:16px">%CATEGORY%</th></tr>
+    <tr><td class="clrBkgrnd"><span style="font-weight:bold">Anzahl Dateien: </span>%TOTALCOUNT%</td></tr>
+</table>
+<div class="bkmkLblFiles hide-on-print" width="100%" border="1">Dateien</div>
 %ITEMS%
-%PAGS%
-<p><img border="0" src="res/header.gif"/></p></body></html>
+</body></html>
 

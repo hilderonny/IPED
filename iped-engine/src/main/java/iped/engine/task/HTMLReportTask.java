@@ -465,7 +465,7 @@ public class HTMLReportTask extends AbstractTask {
         StringBuilder ret = new StringBuilder();
         for (int i = 0; i < info.examiners.size(); i++) {
             if (i > 0) {
-                ret.append("<br><br>\n"); //$NON-NLS-1$
+                ret.append("<br>\n"); //$NON-NLS-1$
             }
             StringBuilder s = new StringBuilder();
             s.append(modeloPerito);
@@ -545,15 +545,8 @@ public class HTMLReportTask extends AbstractTask {
         replace(modelo, "%REPORT%", info.reportNumber); //$NON-NLS-1$
         replace(modelo, "%REPORT_DATE%", info.reportDate); //$NON-NLS-1$
         replace(modelo, "%EXAMINERS%", formatPeritos()); //$NON-NLS-1$
-        replace(modelo, "%HEADER%", info.reportHeader); //$NON-NLS-1$
-        replace(modelo, "%TITLE%", info.reportTitle); //$NON-NLS-1$
         replace(modelo, "%INVESTIGATION%", info.caseNumber); //$NON-NLS-1$
-        replace(modelo, "%REQUEST_DOC%", info.requestForm); //$NON-NLS-1$
-        replace(modelo, "%REQUEST_DATE%", info.requestDate); //$NON-NLS-1$
-        replace(modelo, "%REQUESTER%", info.requester); //$NON-NLS-1$
         replace(modelo, "%RECORD%", info.labCaseNumber); //$NON-NLS-1$
-        replace(modelo, "%RECORD_DATE%", info.labCaseDate); //$NON-NLS-1$
-        replace(modelo, "%EVIDENCE%", info.getEvidenceDescHtml()); //$NON-NLS-1$
 
 
         StringBuilder item = EncodedFile.readFile(new File(templatesFolder, "item.html"), StandardCharsets.UTF_8).content; //$NON-NLS-1$//$NON-NLS-2$

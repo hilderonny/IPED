@@ -175,24 +175,11 @@ public class ReportInfo implements Serializable {
         JSONObject json = new JSONObject(str);
         reportNumber = json.getString("reportNumber");
         reportDate = json.getString("reportDate");
-        reportTitle = json.getString("reportTitle");
         JSONArray array = json.getJSONArray("examiners");
         for (int i = 0; i < array.length(); i++)
             examiners.add(array.getString(i));
         caseNumber = json.getString("caseNumber");
-        requestForm = json.getString("requestForm");
-        requestDate = json.getString("requestDate");
-        requester = json.getString("requester");
         labCaseNumber = json.getString("labCaseNumber");
-        labCaseDate = json.getString("labCaseDate");
-        array = json.getJSONArray("evidences");
-        for (int i = 0; i < array.length(); i++) {
-            JSONObject evidence = array.getJSONObject(i);
-            EvidenceDesc e = new EvidenceDesc();
-            e.id = evidence.getString("id");
-            e.desc = evidence.getString("desc");
-            evidences.add(e);
-        }
     }
 
     public File writeReportInfoFile() throws IOException {
