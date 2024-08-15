@@ -19,9 +19,40 @@
     }
 </script>
 </head><body><table><tr><td height="20" valign="top"><img border="0" src="res/header.gif"/></td></tr></table>
+    <div id="conteudo" align="center">
+        <table class="info">
+            <tr>
+                <td valign="middle" class="SmallText3" align="center" colspan="2"><b>%HEADER%</b><br /></td>
+            </tr>	
+            <tr><td valign="top" class="SmallText3" width = "1%"><b>Bericht</b></td><td align="left" valign="middle" class="MainBodyText"><b>%REPORT%</b></td></tr>
+            <tr><td valign="top" class="SmallText3" width = "1%"><b>Datum</b></td><td align="left" valign="middle" class="MainBodyText">%REPORT_DATE%</td></tr>
+            <tr><td valign="top" class="SmallText3" width = "1%"><b>Titel</b></td><td align="left" valign="middle" class="MainBodyText">%TITLE%</td></tr>
+
+            <tr><td valign="top" class="SmallText3" width = "1%"><b>Ermittler</b></td><td align="left" valign="middle" class="MainBodyText">
+                    %EXAMINERS%
+                </td></tr>
+
+            <tr><td valign="top" class="SmallText3" width = "1%"><b>Vorgangsreferenz</b></td><td align="left" valign="middle" class="MainBodyText">
+                    <b>%INVESTIGATION%</b><br>
+                    %REQUEST_DOC% vom %REQUEST_DATE%<br>
+                    angefordert von %REQUESTER%<br>
+                    Fallnummer des Labors %RECORD% vom %RECORD_DATE%<br>
+                </td></tr>
+
+            <tr>
+                <td valign="top" class="SmallText3" width = "1%"><b>Analysierte Beweise</b></td>
+                <td align="left" valign="middle" class="MainBodyText">
+                    %EVIDENCE%
+                </td>
+            </tr>
+
+            </tr>
+
+        </table>
+    </div>
     Drucken:
-    <button onclick="handleConsecutivePrint('print-consecutive');">Fortlaufend</button>
-    <button onclick="handleOneEvidencePerPagePrint('print-one-evidence-per-page');">Eine Datei je Seite</button>
+    <button onclick="handlePrint('print-consecutive');">Fortlaufend</button>
+    <button onclick="handlePrint('print-one-evidence-per-page');">Eine Datei je Seite</button>
 %PAGS%
 <table width="100%"><tr><th class="columnHead" colspan="1" style="font-size:16px">%CATEGORY%</th></tr>
 <tr><td class="clrBkgrnd"><span style="font-weight:bold">Kommentare: </span>%COMMENTS%</td></tr></table>
