@@ -349,6 +349,7 @@ public class HTMLReportTask extends AbstractTask {
         }
 
         ReportEntry reg = new ReportEntry();
+        reg.id = Long.valueOf(evidence.getId());
         reg.name = evidence.getName();
         reg.export = evidence.getIdInDataSource();
         reg.isImage = ImageThumbTask.isImageType(evidence.getMediaType());
@@ -725,6 +726,7 @@ public class HTMLReportTask extends AbstractTask {
                 }
             }
             replace(it, "%SEQ%", reg.hash); //$NON-NLS-1$
+            replace(it, "%ID%", formatNumber(reg.id, longFormat)); //$NON-NLS-1$
             replace(it, "%NAME%", reg.name); //$NON-NLS-1$
             replace(it, "%PATH%", reg.path); //$NON-NLS-1$
             replace(it, "%TYPE%", reg.category); //$NON-NLS-1$
@@ -1062,7 +1064,7 @@ public class HTMLReportTask extends AbstractTask {
  */
 class ReportEntry {
     String name, export, ext, category, hash, path, img;
-    Long length;
+    Long length, id;
     boolean deleted, carved, isImage, isVideo;
     Date accessed, modified, created;
 }

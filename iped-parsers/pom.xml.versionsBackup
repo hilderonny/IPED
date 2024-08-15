@@ -3,12 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>iped</groupId>
-        <artifactId>iped-carvers</artifactId>
-        <version>4.1.6-hilderonny-1</version>
+        <artifactId>iped-parent</artifactId>
+        <version>4.1.6</version>
     </parent>
-    <artifactId>iped-ahocorasick</artifactId>
-	<version>1.1</version>
-    <packaging>jar</packaging>
+    
+    <artifactId>iped-parsers</artifactId>
+    <packaging>pom</packaging>
+    
+    <modules>
+        <module>java-dbf</module>
+        <module>iped-parsers-impl</module>
+    </modules>
+    
     <build>
     	<plugins>
     		<plugin>
@@ -26,4 +32,17 @@
             </plugin>
     	</plugins>
     </build>
+    
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <configLocation>config/sun_checks.xml</configLocation>
+                </configuration>
+                <version>2.13</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
