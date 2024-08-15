@@ -5,8 +5,23 @@
 <title>Lesezeichen</title>
 <style>
 .thumb {width:auto; height:auto; max-width:%THUMBSIZE%px; max-height:%THUMBSIZE%px;}
+@media print {
+    .print-one-evidence-per-page .bkmkSeparator { page-break-before: always; }
+    .thumb { max-width:100%; max-height: 100%; page-break-before: avoid; }
+    .print-one-evidence-per-page .thumb { width: 100%; }
+}
 </style>
+<script>
+    function handlePrint(cls) {
+        document.body.classList.add(cls);
+        window.print();
+        document.body.classList.remove(cls);
+    }
+</script>
 </head><body><table><tr><td height="20" valign="top"><img border="0" src="res/header.gif"/></td></tr></table>
+    Drucken:
+    <button onclick="handleConsecutivePrint('print-consecutive');">Fortlaufend</button>
+    <button onclick="handleOneEvidencePerPagePrint('print-one-evidence-per-page');">Eine Datei je Seite</button>
 %PAGS%
 <table width="100%"><tr><th class="columnHead" colspan="1" style="font-size:16px">%CATEGORY%</th></tr>
 <tr><td class="clrBkgrnd"><span style="font-weight:bold">Kommentare: </span>%COMMENTS%</td></tr></table>
