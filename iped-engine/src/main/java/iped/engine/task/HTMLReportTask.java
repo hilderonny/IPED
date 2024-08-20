@@ -349,6 +349,7 @@ public class HTMLReportTask extends AbstractTask {
         }
 
         ReportEntry reg = new ReportEntry();
+        reg.id = Long.valueOf(evidence.getId());
         reg.name = evidence.getName();
         reg.export = evidence.getIdInDataSource();
         if (reg.export != null && output != null && output.getParentFile() != null) {
@@ -471,7 +472,7 @@ public class HTMLReportTask extends AbstractTask {
         StringBuilder ret = new StringBuilder();
         for (int i = 0; i < info.examiners.size(); i++) {
             if (i > 0) {
-                ret.append("<br><br>\n"); //$NON-NLS-1$
+                ret.append("<br>\n"); //$NON-NLS-1$
             }
             StringBuilder s = new StringBuilder();
             s.append(modeloPerito);
@@ -545,6 +546,16 @@ public class HTMLReportTask extends AbstractTask {
         sortRegs();
         StringBuilder modelo = EncodedFile.readFile(new File(templatesFolder, "arq.html"), StandardCharsets.UTF_8).content; //$NON-NLS-1$//$NON-NLS-2$
         replace(modelo, "%THUMBSIZE%", String.valueOf(htmlReportConfig.getThumbSize())); //$NON-NLS-1$
+
+        // Case information
+
+        replace(modelo, "%REPORT%", info.reportNumber); //$NON-NLS-1$
+        replace(modelo, "%REPORT_DATE%", info.reportDate); //$NON-NLS-1$
+        replace(modelo, "%EXAMINERS%", formatPeritos()); //$NON-NLS-1$
+        replace(modelo, "%INVESTIGATION%", info.caseNumber); //$NON-NLS-1$
+        replace(modelo, "%RECORD%", info.labCaseNumber); //$NON-NLS-1$
+
+
         StringBuilder item = EncodedFile.readFile(new File(templatesFolder, "item.html"), StandardCharsets.UTF_8).content; //$NON-NLS-1$//$NON-NLS-2$
         int idx = 1;
         for (String marcador : entriesByLabel.keySet()) {
@@ -732,6 +743,7 @@ public class HTMLReportTask extends AbstractTask {
                 }
             }
             replace(it, "%SEQ%", reg.hash); //$NON-NLS-1$
+            replace(it, "%ID%", formatNumber(reg.id, longFormat)); //$NON-NLS-1$
             replace(it, "%NAME%", reg.name); //$NON-NLS-1$
             replace(it, "%PATH%", reg.path); //$NON-NLS-1$
             replace(it, "%TYPE%", reg.category); //$NON-NLS-1$
@@ -772,7 +784,7 @@ public class HTMLReportTask extends AbstractTask {
         p.append("</tr></table>\n"); //$NON-NLS-1$
 
         replace(sb, "%CATEGORY%", (isLabel ? Messages.getString("HTMLReportTask.Bookmark") //$NON-NLS-1$ //$NON-NLS-2$
-                : Messages.getString("HTMLReportTask.Category")) + ": " + name); //$NON-NLS-1$ //$NON-NLS-2$
+                : "<th>" + Messages.getString("HTMLReportTask.Category")) + "</th><td>" + name + "</td>"); //$NON-NLS-1$ //$NON-NLS-2$
         replace(sb, "%COMMENTS%", getComments(name)); //$NON-NLS-1$
         replace(sb, "%TOTALCOUNT%", String.valueOf(totRegs)); //$NON-NLS-1$
         replace(sb, "%ITEMS%", items.toString()); //$NON-NLS-1$
@@ -1064,7 +1076,7 @@ public class HTMLReportTask extends AbstractTask {
  */
 class ReportEntry {
     String name, export, ext, category, hash, path, img;
-    Long length;
+    Long length, id;
     boolean deleted, carved, isImage, isVideo;
     Date accessed, modified, created;
 }
